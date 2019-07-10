@@ -150,7 +150,7 @@ vi /etc/httpd/conf/httpd.conf
 
 ```xml
 <Directory ''>
-	Options Indexes FollowSymLinks
+    Options Indexes FollowSymLinks
     AllowOverride None
     Require all granted
 </Directory>
