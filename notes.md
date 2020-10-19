@@ -1,6 +1,64 @@
 ﻿# Linux Training
 [![N|Solid](https://vieo.tv/assets/uploads/nairobi-kenya-linux-event.jpg)](http://livingopensource.net)
 
+## User Management
+
+### Intro
+
+```sh
+# print current user and group info
+id
+```
+
+### Adding, deleting users
+
+```sh
+# add user bob
+useradd bob
+
+# delete user bob, from root
+userdel bob
+```
+
+### Switching users
+
+```sh
+# switch to root, note there is a space afer su
+su 
+
+# switch to user bob
+su - bob
+```
+
+### Managing user groups
+
+```sh
+# add a group
+groupadd sales
+
+# add bob to the sales group (without overwriting other groups)
+usermod -aG sudo bob
+
+# delet group sales
+groupdel sales
+```
+
+## File system
+
+`/` - root
+
+- `usr` - programs
+  - `lib` - library
+  - `bin` - binary files
+  - `sbin` - root bin
+  - `local`
+- `var`
+  - `log`
+- `tmp`
+- `dev` - device interfaces
+- `proc` - exists in memory only, kernel interface
+- `etc` - configuration files
+
 ## LVM Management
 
 ### Creating Partitions using *fdisk*
@@ -128,7 +186,7 @@ systemctl enable --now httpd
 # Register domain name
 echo 127.0.0.1 los.net >> /etc/hosts 
 ```
-   
+
 ```sh
 # Create config file with Virtual Host metadata
 vi /etc/httpd/conf.d/los.net.conf
@@ -141,7 +199,7 @@ vi /etc/httpd/conf.d/los.net.conf
       CustomLog logs/los.net-access_log common
       ErrorLog logs/los.net-error_log
  </VirtualHost>
- ```
+```
 
 ```sh
 # add directory permissions to httpd config file
@@ -170,7 +228,7 @@ systemctl restart httpd
 ## Managing Network Communication
 ### Firewall
 Firewalls filter incoming traffic. Each service in Linux is by default allocated a port as specified in ```/etc/services/``` --- for example port ```22``` for ___ssh___, ```80``` for ___http___ and ```443``` for ___https___. 
- 
+
  Tools used for firewall management: ```ufw```, ```firewalld```, ```susefirewall```
 
 #### iptables
@@ -185,7 +243,7 @@ We use __ports__ and __protocols__ to determine how traffic should be handled --
    i/o # interface
    s/d # ip/dnsname
    p # protocol: udp/tcp
-   ```
+ ```
 
 ```sh
 # list the iptables
@@ -219,9 +277,9 @@ systemctl enable --now iptables
 
 ## Software Installation
 Software is bundled for distribution as __packages__ that perform specific tasks. __Repositories__ are collection of _packages_ that can be used to satisfy a package's _dependencies_.
- 
+
  The format of the packages depends on the particular Linux Distro --- ```.deb```  on Debian-based distros  and ```.rpm``` on Red Hat-based distros. 
- 
+
  Package managers  are used to conveniently install packages by automatically fetching and installing dependencies alongside the required package from the available repositories. Common package managers are: ```apt``` on Ubuntu-based distros and ```yum``` on Red Hat-based distros.
 
 ```sh
@@ -248,7 +306,7 @@ or ```libvertd``` and manipulate them using ``` virsh```.
  net-list
  net-info
  console # connect to remote virtual machine
-``` 
+```
 
 
 ## Symbolic Links
